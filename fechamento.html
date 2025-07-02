@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Fechamento - Corretagem de Café</title>
+
+
+         <!-- SOLUÇÃO DEFINITIVA: Carregar PizZip do jsDelivr -->
+    <script src="https://cdn.jsdelivr.net/npm/pizzip@3.1.0/dist/pizzip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/docxtemplater/3.34.0/docxtemplater.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/docxtemplater@3.34.0/js/angularParser.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="stylesheet" href="css/fechamento.css">
+</head>
+<body>
+    <div class="container">
+        <a href="index.html"> <header>
+             <div class="logo">
+                <i class="fas fa-coffee"></i>
+                <div>
+                    <h1>Sistema de Fechamento</h1>
+                    <span>R.S.C  REPRESENTAÇÕES COMERCIAIS</span>
+                </div>
+            </div>
+            <div class="user-info">
+                <i class="fas fa-user-circle fa-2x"></i>
+            </div>
+        </header></a>
+        
+        <div class="mobile-warning">
+            <i class="fas fa-mobile-alt"></i> Modo de visualização otimizado para celulares
+        </div>
+        
+        <div class="content">
+            <div class="client-selection card">
+                <div class="card-title">
+                    <i class="fas fa-users"></i>
+                    <h2>Seleção de Clientes</h2>
+                </div>
+                
+                <div class="select-group">
+                    <label for="vendedor"><i class="fas fa-user-tie"></i> Selecione o Vendedor</label>
+                    <select id="vendedor">
+                        <option value="">Selecione um vendedor</option>
+                        </select>
+                    
+                    <div id="vendedor-preview" class="cliente-box" style="display: none;">
+                        <span class="preview-name"></span>
+                        <span class="preview-cnpj"></span>
+                        <span class="preview-contato"></span>
+                    </div>
+                </div>
+                
+                <div class="select-group">
+                    <label for="comprador"><i class="fas fa-user-tag"></i> Selecione o Comprador</label>
+                    <select id="comprador">
+                        <option value="">Selecione um comprador</option>
+                        </select>
+                    
+                    <div id="comprador-preview" class="cliente-box" style="display: none;">
+                        <span class="preview-name"></span>
+                        <span class="preview-cnpj"></span>
+                        <span class="preview-contato"></span>
+                    </div>
+                </div>
+                
+                <div class="info-box">
+                    <p><strong><i class="fas fa-info-circle"></i> Informações:</strong></p>
+                    <ul>
+                        <li>Selecione vendedor e comprador para ver os detalhes e preencher os dados.</li>
+                        <li>Clientes podem ser cadastrados no menu principal.</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="variables card">
+                <div class="card-title">
+                    <i class="fas fa-file-contract"></i>
+                    <h2>Detalhes do Fechamento</h2>
+                </div>
+                
+                <div class="form-section">
+                    <h3><i class="fas fa-truck-loading"></i> Local de Descarga</h3>
+                    <div class="form-grid">
+                        <div class="form-row">
+                            <label for="descarga-comprador">Comprador <span>*</span></label>
+                            <input type="text" id="descarga-comprador" placeholder="Nome do comprador">
+                        </div>
+                        <div class="form-row">
+                            <label for="descarga-endereco">Endereço <span>*</span></label>
+                            <input type="text" id="descarga-endereco" placeholder="Rua, número">
+                        </div>
+                        <div class="form-row">
+                            <label for="descarga-municipio">Município <span>*</span></label>
+                            <input type="text" id="descarga-municipio" placeholder="Cidade">
+                        </div>
+                        <div class="form-row">
+                            <label for="descarga-cep">CEP <span>*</span></label>
+                            <input type="text" id="descarga-cep" placeholder="00000-000">
+                        </div>
+                        <div class="form-row">
+                            <label for="descarga-cnpj">CNPJ <span>*</span></label>
+                            <input type="text" id="descarga-cnpj" placeholder="00.000.000/0000-00">
+                        </div>
+                        <div class="form-row">
+                            <label for="descarga-ie">Inscrição Estadual</label>
+                            <input type="text" id="descarga-ie" placeholder="IE">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-section">
+                    <h3><i class="fas fa-warehouse"></i> Local de Retirada</h3>
+                    <div class="form-grid">
+                        <div class="form-row">
+                            <label for="retirada-endereco">Endereço <span>*</span></label>
+                            <input type="text" id="retirada-endereco" placeholder="Rua, número">
+                        </div>
+                        <div class="form-row">
+                            <label for="retirada-municipio">Município <span>*</span></label>
+                            <input type="text" id="retirada-municipio" placeholder="Cidade">
+                        </div>
+                        <div class="form-row">
+                            <label for="retirada-cep">CEP <span>*</span></label>
+                            <input type="text" id="retirada-cep" placeholder="00000-000">
+                        </div>
+                        <div class="form-row">
+                            <label for="retirada-cnpj">CNPJ <span>*</span></label>
+                            <input type="text" id="retirada-cnpj" placeholder="00.000.000/0000-00">
+                        </div>
+                        <div class="form-row">
+                            <label for="retirada-ie">Inscrição Estadual</label>
+                            <input type="text" id="retirada-ie" placeholder="IE">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-section">
+                    <h3><i class="fas fa-info-circle"></i> Informações Adicionais</h3>
+                    <div class="form-grid">
+                        <div class="form-row">
+                            <label for="preco">Preço (R$/saca) <span>*</span></label>
+                            <input type="number" id="preco" placeholder="Ex: 1200.00">
+                        </div>
+                        <div class="form-row">
+                            <label for="sacaria">Sacaria <span>*</span></label>
+                            <input type="text" id="sacaria" placeholder="Tipo de embalagem">
+                        </div>
+                        <div class="form-row">
+                            <label for="quantidade">Quantidade (sacas) <span>*</span></label>
+                            <input type="number" id="quantidade" placeholder="Ex: 300">
+                        </div>
+                        <div class="form-row">
+                            <label for="modalidade">Modalidade</label>
+                            <select id="modalidade">
+                                <option value="">Selecione...</option>
+                                <option value="cafe_arabica">Café Arábica</option>
+                                <option value="cafe_robusta">Café Robusta</option>
+                                <option value="cafe_especial">Café Especial</option>
+                                <option value="cafe_organico">Café Orgânico</option>
+                            </select>
+                        </div>
+                        <div class="form-row" style="grid-column: span 2;">
+                            <label for="descricao">Descrição</label>
+                            <textarea id="descricao" placeholder="Detalhes sobre o produto" rows="3"></textarea>
+                        </div>
+                        <div class="form-row" style="grid-column: span 2;">
+                            <label for="pagamento">Condições de Pagamento <span>*</span></label>
+                            <input type="text" id="pagamento" placeholder="Ex: 50% à vista, 50% em 30 dias">
+                        </div>
+                        <div class="form-row" style="grid-column: span 2;">
+                            <label for="bancarios">Dados Bancários <span>*</span></label>
+                            <textarea id="bancarios" placeholder="Banco, agência, conta" rows="2"></textarea>
+                        </div>
+                        <div class="form-row" style="grid-column: span 2;">
+                            <label for="observacoes">Observações</label>
+                            <textarea id="observacoes" placeholder="Informações adicionais" rows="2"></textarea>
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="btn-generate">
+                    <i class="fas fa-file-download"></i> Gerar Fechamento
+                </button>
+            </div>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+        <footer>
+            <p>R.S.C Representações Comerciais &copy; 2025 - Todos os direitos reservados</p>
+            <p>Sistema desenvolvido por <span class="company-name">Kwedo Tech</span></p>
+        </footer>
+    </div>
+
+    <script src="script/fechamento.js">
+     
+    </script>
+      
+</body>
+</html>
